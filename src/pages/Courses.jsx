@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import CourseCard from '../components/CourseCard.jsx';
+import frontpic from '../assets/front.png'
+import dsa from '../assets/DSA.webp'
+import ml from '../assets/ML.jpg'
 
 const dummyCourses = [
   {
@@ -8,21 +11,21 @@ const dummyCourses = [
     title: 'Frontend Development',
     category: 'Development',
     description: 'Learn modern frontend frameworks and UI design',
-    image: '/assets/frontend.jpg',
+    image: frontpic,
   },
   {
     id: 2,
     title: 'Data Structures & Algorithms',
     category: 'Computer Science',
     description: 'Master data structures and problem-solving skills',
-    image: '/assets/dsa.jpg',
+    image: dsa,
   },
   {
     id: 3,
     title: 'Machine Learning',
     category: 'AI',
     description: 'Intro to ML models, data processing',
-    image: '/assets/ml.jpg',
+    image: ml,
   },
 ];
 
