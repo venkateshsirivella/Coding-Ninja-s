@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar.jsx';
 import Footer from './components/Footer.jsx';
 import ThemeToggle from './components/ThemeToggle.jsx';
+import JobBootcamp from './pages/JobBootcamp';
+import MERNStackCourse from './pages/MERNStackCourse';
 
 // Lazy loaded pages for performance
 const Home = lazy(() => import('./pages/Home.jsx'));
@@ -41,6 +43,8 @@ function App() {
             <Route path="/career-camp" element={<CareerCamp />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/programs/job-bootcamp-web-development" element={<JobBootcamp />} />
+            <Route path="/programs/mern-stack-developer-course" element={<MERNStackCourse />} />
           </Routes>
         </Suspense>
         <Footer />

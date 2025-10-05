@@ -126,7 +126,7 @@ const Home = () => {
           and grow alongside thousands of passionate learners.
         </p>
         <a
-          href="/community"
+          href="https://www.codingninjas.com/landing/10x-club/"
           className="inline-block bg-indigo-600 hover:bg-indigo-700 text-white md:text-lg font-semibold px-10 py-4 rounded-lg shadow-lg transition transform hover:scale-105"
           aria-label="Explore Community"
         >
