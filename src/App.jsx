@@ -1,55 +1,29 @@
-import React, { Suspense, lazy, useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+// src/App.jsx
+import React, { useState, useEffect, Suspense } from 'react';
+import { Outlet } from 'react-router-dom';
 import Navbar from './components/Navbar.jsx';
 import Footer from './components/Footer.jsx';
 import ThemeToggle from './components/ThemeToggle.jsx';
-import JobBootcamp from './pages/JobBootcamp';
-import MERNStackCourse from './pages/MERNStackCourse';
-
-// Lazy loaded pages for performance
-const Home = lazy(() => import('./pages/Home.jsx'));
-const Courses = lazy(() => import('./pages/Courses.jsx'));
-const CareerCamp = lazy(() => import('./pages/CareerCamp.jsx'));
-const Blog = lazy(() => import('./pages/Blog.jsx'));
-const Contact = lazy(() => import('./pages/Contact.jsx'));
 
 function App() {
-  const [theme, setTheme] = useState(
-    localStorage.getItem('theme') || 'light'
-  );
+  const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
 
   useEffect(() => {
-    if (theme === 'dark') {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
+    document.documentElement.classList.toggle('dark', theme === 'dark');
     localStorage.setItem('theme', theme);
   }, [theme]);
 
-  const toggleTheme = () => {
-    setTheme(theme === 'light' ? 'dark' : 'light');
-  };
+  const toggleTheme = () => setTheme(theme === 'light' ? 'dark' : 'light');
 
   return (
-    <Router>
-      <div className="flex flex-col min-h-screen bg-backgroundLight dark:bg-backgroundDark transition-colors duration-500">
-        <Navbar />
-        <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
-        <Suspense fallback={<div className="text-center mt-20">Loading...</div>}>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/courses" element={<Courses />} />
-            <Route path="/career-camp" element={<CareerCamp />} />
-            <Route path="/blog" element={<Blog />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/programs/job-bootcamp-web-development" element={<JobBootcamp />} />
-            <Route path="/programs/mern-stack-developer-course" element={<MERNStackCourse />} />
-          </Routes>
-        </Suspense>
-        <Footer />
-      </div>
-    </Router>
+    <div className="flex flex-col min-h-screen bg-backgroundLight dark:bg-backgroundDark transition-colors duration-500">
+      <Navbar />
+      <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
+      <Suspense fallback={<div className="text-center mt-20">Loading...</div>}>
+        <Outlet /> {/* 👈 where child routes render */}
+      </Suspense>
+      <Footer />
+    </div>
   );
 }
 

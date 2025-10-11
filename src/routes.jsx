@@ -1,0 +1,29 @@
+// src/routes.jsx
+import React from 'react';
+import { createBrowserRouter } from 'react-router-dom';
+import App from './App.jsx';
+import Home from './pages/Home.jsx';
+import Login from './pages/Login.jsx';
+import Courses from './pages/Courses.jsx';
+import CareerCamp from './pages/CareerCamp.jsx';
+import Blog from './pages/Blog.jsx';
+import Contact from './pages/Contact.jsx';
+import JobBootcamp from './pages/JobBootcamp.jsx';
+import MERNStackCourse from './pages/MERNStackCourse.jsx';
+
+export const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <App />,
+    children: [
+      { index: true, element: <Home /> },
+      { path: 'login', element: <Login /> },
+      { path: 'courses', element: <Courses /> },
+      { path: 'career-camp', element: <CareerCamp /> },
+      { path: 'blog', element: <Blog /> },
+      { path: 'contact', element: <Contact /> },
+      { path: 'programs/job-bootcamp-web-development', element: <JobBootcamp /> },
+      { path: 'programs/mern-stack-developer-course', element: <MERNStackCourse /> },
+    ],
+  },
+]);
