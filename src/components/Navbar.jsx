@@ -1,12 +1,11 @@
+// src/components/Navbar.jsx
 import React, { useState, useCallback, useContext, createContext, useEffect } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { FaBars, FaTimes, FaSun, FaMoon } from 'react-icons/fa';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
-
 import NinjaIcon from '../assets/icon.jpeg';
 
 const ThemeContext = createContext();
-
 export const ThemeProvider = ({ children }) => {
   const [theme, setTheme] = useState(() => localStorage.getItem('theme') || 'light');
   useEffect(() => {
@@ -18,30 +17,17 @@ export const ThemeProvider = ({ children }) => {
 };
 
 const BrandIcon = () => (
-  <img
-    src={NinjaIcon}
-    alt="Coding Ninjas Icon"
-    className="w-9 h-9 rounded-full object-cover mr-3 bg-white"
-    style={{ border: '2px solid #343537' }}
-  />
+  <img src={NinjaIcon} alt="Coding Ninjas Icon" className="w-9 h-9 rounded-full object-cover mr-3 bg-white" style={{ border: '2px solid #343537' }} />
 );
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { theme, toggleTheme } = useContext(ThemeContext);
   const navigate = useNavigate();
-  const shouldReduceMotion = useReducedMotion();
-
-  const toggleMenu = useCallback(() => setIsOpen(open => !open), []);
-  const linkClass = ({ isActive }) =>
-    isActive
-      ? 'text-primary font-semibold'
-      : 'text-gray-700 dark:text-gray-300 hover:text-primary transition';
-
-  const menuVariants = {
-    hidden: { opacity: 0, height: 0, transition: { duration: 0.2 } },
-    visible: { opacity: 1, height: 'auto', transition: { duration: 0.2 } },
-  };
+  const reduce = useReducedMotion();
+  const toggleMenu = useCallback(() => setIsOpen(o => !o), []);
+  const linkClass = ({ isActive }) => (isActive ? 'text-primary font-semibold' : 'text-gray-700 dark:text-gray-300 hover:text-primary transition');
+  const menuVariants = { hidden: { opacity: 0, height: 0, transition: { duration: 0.2 } }, visible: { opacity: 1, height: 'auto', transition: { duration: 0.2 } } };
 
   return (
     <nav className="bg-white dark:bg-gray-900 shadow-md sticky top-0 z-50 select-none">
@@ -57,50 +43,20 @@ const Navbar = () => {
           <NavLink to="/career-camp" className={linkClass}>Career Camp</NavLink>
           <NavLink to="/blog" className={linkClass}>Blog</NavLink>
           <NavLink to="/contact" className={linkClass}>Contact</NavLink>
-
-          <button
-            onClick={() => navigate('/login')}
-            className="inline-flex items-center gap-2 rounded-lg border border-gray-300 dark:border-gray-700 px-4 py-2 text-sm font-medium text-gray-800 dark:text-gray-100 hover:bg-gray-50 dark:hover:bg-gray-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/60"
-          >
-            <img
-              src="https://www.svgrepo.com/show/475656/google-color.svg"
-              alt=""
-              aria-hidden="true"
-              className="size-4"
-            />
+          <button onClick={() => navigate('/login')} className="inline-flex items-center gap-2 rounded-lg border border-gray-300 dark:border-gray-700 px-4 py-2 text-sm font-medium text-gray-800 dark:text-gray-100 hover:bg-gray-50 dark:hover:bg-gray-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/60">
             Login
           </button>
-
-          <button
-            onClick={toggleTheme}
-            aria-label="Toggle theme"
-            className="ml-2 text-gray-700 dark:text-gray-300 hover:text-primary transition"
-          >
+          <button onClick={toggleTheme} aria-label="Toggle theme" className="ml-2 text-gray-700 dark:text-gray-300 hover:text-primary transition">
             {theme === 'light' ? <FaMoon size={18} /> : <FaSun size={18} />}
           </button>
         </div>
 
         <div className="md:hidden flex items-center space-x-3">
-          <button
-            onClick={() => navigate('/login')}
-            className="rounded-md border border-gray-300 dark:border-gray-700 px-2.5 py-1.5 text-xs text-gray-800 dark:text-gray-100 hover:bg-gray-50 dark:hover:bg-gray-800"
-          >
-            Login
-          </button>
-          <button
-            onClick={toggleTheme}
-            aria-label="Toggle theme"
-            className="text-gray-700 dark:text-gray-300 hover:text-primary transition"
-          >
+          <button onClick={() => navigate('/login')} className="rounded-md border border-gray-300 dark:border-gray-700 px-2.5 py-1.5 text-xs text-gray-800 dark:text-gray-100 hover:bg-gray-50 dark:hover:bg-gray-800">Login</button>
+          <button onClick={toggleTheme} aria-label="Toggle theme" className="text-gray-700 dark:text-gray-300 hover:text-primary transition">
             {theme === 'light' ? <FaMoon size={22} /> : <FaSun size={22} />}
           </button>
-          <button
-            onClick={toggleMenu}
-            aria-label={isOpen ? 'Close menu' : 'Open menu'}
-            className="text-gray-700 dark:text-gray-300 focus:outline-none"
-          >
-            {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
-          </button>
+          <button onClick={toggleMenu} aria-label={isOpen ? 'Close menu' : 'Open menu'} className="text-gray-700 dark:text-gray-300 focus:outline-none">{isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}</button>
         </div>
       </div>
 
@@ -109,8 +65,8 @@ const Navbar = () => {
           <motion.div
             key="mobile-menu"
             initial="hidden"
-            animate={shouldReduceMotion ? { opacity: 1, height: 'auto' } : 'visible'}
-            exit={shouldReduceMotion ? { opacity: 0, height: 0 } : 'hidden'}
+            animate={reduce ? { opacity: 1, height: 'auto' } : 'visible'}
+            exit={reduce ? { opacity: 0, height: 0 } : 'hidden'}
             variants={menuVariants}
             className="md:hidden bg-white dark:bg-gray-800 px-4 pb-4 space-y-3"
           >
@@ -119,18 +75,11 @@ const Navbar = () => {
             <NavLink onClick={toggleMenu} to="/career-camp" className={linkClass}>Career Camp</NavLink>
             <NavLink onClick={toggleMenu} to="/blog" className={linkClass}>Blog</NavLink>
             <NavLink onClick={toggleMenu} to="/contact" className={linkClass}>Contact</NavLink>
-            <NavLink
-              onClick={toggleMenu}
-              to="/login"
-              className="block text-gray-700 dark:text-gray-300 hover:text-primary transition"
-            >
-              Login
-            </NavLink>
+            <NavLink onClick={toggleMenu} to="/login" className="block text-gray-700 dark:text-gray-300 hover:text-primary transition">Login</NavLink>
           </motion.div>
         )}
       </AnimatePresence>
     </nav>
   );
 };
-
 export default Navbar;

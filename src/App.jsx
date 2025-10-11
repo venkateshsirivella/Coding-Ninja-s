@@ -5,6 +5,7 @@ import Navbar from './components/Navbar.jsx';
 import Footer from './components/Footer.jsx';
 import ThemeToggle from './components/ThemeToggle.jsx';
 
+
 function App() {
   const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
 
