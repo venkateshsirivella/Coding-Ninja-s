@@ -2,11 +2,9 @@ import React, { useState, useCallback, useContext, createContext, useEffect } fr
 import { NavLink } from 'react-router-dom';
 import { FaBars, FaTimes, FaSun, FaMoon } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
+import NinjaIcon from '../assets/icon.jpeg';
 
-// Import your image here
-import NinjaIcon from '../assets/icon.jpeg'; // <-- Replace with your actual image path
 
-// Theme context
 const ThemeContext = createContext();
 
 export const ThemeProvider = ({ children }) => {
