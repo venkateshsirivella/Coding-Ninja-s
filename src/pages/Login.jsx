@@ -5,6 +5,7 @@ import React, { useId, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link, useNavigate } from 'react-router-dom';
 import { useToast } from '../components/Toast';
+import { useAuth } from '../components/auth';
 
 const GoogleIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" className="size-5" aria-hidden="true">
@@ -21,24 +22,26 @@ const NaukriIcon = () => (
   </svg>
 );
 
+
 const Login = () => {
   const emailId = useId();
   const passId = useId();
-  const [stage, setStage] = useState('email'); // 'email' | 'password'
+  const [stage, setStage] = useState('email');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [oauth, setOauth] = useState(null); // null | 'google' | 'naukri'
+  const [oauth, setOauth] = useState(null);
   const navigate = useNavigate();
   const { push } = useToast();
+  const { login } = useAuth();
 
   const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
-  // Removed TS type. Use plain JS.
   const handleFinishLogin = (provider) => {
+    login({ name: 'Learner', email, provider: provider || 'password' });
     push({ title: 'Login successful', description: provider ? `Signed in with ${provider}` : 'Welcome back!' });
     navigate('/user');
   };
-
+  
   return (
     <main className="min-h-[calc(100dvh-64px)] bg-gray-50 dark:bg-gray-950 px-4 py-8">
       <div className="mx-auto grid w-full max-w-6xl gap-8 md:grid-cols-2">
