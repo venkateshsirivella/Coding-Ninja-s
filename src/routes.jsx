@@ -11,6 +11,9 @@ import Blog from './pages/Blog.jsx';
 import Contact from './pages/Contact.jsx';
 import JobBootcamp from './pages/JobBootcamp.jsx';
 import MERNStackCourse from './pages/MERNStackCourse.jsx';
+import HowToStartCoding from "./pages/HowToStartCoding";
+import Top10CodingInterviewQuestions from "./pages/Top10CodingInterviewQuestions";
+import BenefitsOfLearningReact from "./pages/BenefitsOfLearningReact";
 
 export const router = createBrowserRouter([
   {
@@ -26,6 +29,9 @@ export const router = createBrowserRouter([
       { path: 'contact', element: <Contact /> },
       { path: 'programs/job-bootcamp-web-development', element: <JobBootcamp /> },
       { path: 'programs/mern-stack-developer-course', element: <MERNStackCourse /> },
+      { path: 'learn/how-to-start-coding', element: <HowToStartCoding /> },
+      { path: 'learn/top-10-coding-questions', element: <Top10CodingInterviewQuestions /> },
+      { path: 'learn/benefits-of-react', element: <BenefitsOfLearningReact /> },
     ],
   },
 ]);

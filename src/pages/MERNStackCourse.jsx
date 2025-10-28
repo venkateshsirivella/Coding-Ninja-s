@@ -1,4 +1,3 @@
-// src/pages/MERNStackCourse.jsx
 import React, { useState } from "react";
 import {
   FaDatabase,
@@ -10,6 +9,11 @@ import {
   FaChevronDown,
   FaEnvelope,
   FaGraduationCap,
+  FaMoneyBillWave,
+  FaAward,
+  FaClock,
+  FaBookOpen,
+  FaUserTie,
 } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
@@ -82,9 +86,7 @@ const AccordionItem = ({ title, children, open, onToggle }) => (
 const Modal = ({ open, onClose, onSubmit }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [message, setMessage] = useState(
-    "I want to enroll in the MERN course."
-  );
+  const [message, setMessage] = useState("I want to enroll in the MERN course.");
 
   if (!open) return null;
 
@@ -172,7 +174,6 @@ const MERNStackCourse = () => {
 
   const handleSubmitRequest = (payload) => {
     console.info("Enrollment request:", payload);
-
     toast.success(
       `Thanks ${payload.name || "there"}! We'll contact you at ${
         payload.email || "your email"
@@ -185,20 +186,15 @@ const MERNStackCourse = () => {
           padding: "12px 16px",
           fontWeight: 600,
         },
-        iconTheme: {
-          primary: "#fff",
-          secondary: "#4f46e5",
-        },
       }
     );
   };
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-indigo-50 via-white to-pink-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 font-sans overflow-hidden relative">
-      {/* Toast container */}
-      <Toaster position="top-center" reverseOrder={false} />
+    <main className="min-h-screen bg-gradient-to-b from-indigo-50 via-white to-pink-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 font-sans relative">
+      <Toaster position="top-center" />
 
-      {/* Floating background glows */}
+      {/* Floating glowing blobs */}
       <motion.div
         className="absolute top-0 left-0 w-96 h-96 bg-pink-400/20 rounded-full mix-blend-multiply filter blur-3xl animate-pulse"
         animate={{ x: [0, 30, -20, 0], y: [0, 20, -10, 0] }}
@@ -210,6 +206,7 @@ const MERNStackCourse = () => {
         transition={{ repeat: Infinity, duration: 10 }}
       />
 
+      {/* Hero Section */}
       <section className="relative py-20 z-10">
         <div className="max-w-7xl mx-auto px-6 md:px-12 grid md:grid-cols-2 gap-12 items-center">
           <motion.div initial="hidden" animate="visible" variants={fadeInUp}>
@@ -220,9 +217,8 @@ const MERNStackCourse = () => {
               </span>
             </h1>
             <p className="text-lg text-gray-600 dark:text-gray-300 mb-6">
-              Master MongoDB, Express, React, and Node — build complete web
-              apps, deploy confidently, and craft a portfolio that gets you
-              hired.
+              Learn MongoDB, Express, React, and Node.js through real-world
+              projects, industry-level mentorship, and job-ready training.
             </p>
             <div className="flex flex-wrap gap-4">
               <motion.button
@@ -241,28 +237,36 @@ const MERNStackCourse = () => {
             </div>
           </motion.div>
 
+          {/* Fee Details Card */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.2, duration: 0.5 }}
-            className="relative p-6 rounded-3xl bg-gradient-to-br from-indigo-600 to-pink-500 text-white shadow-2xl hover:shadow-pink-500/30 transform hover:-translate-y-2 transition-all"
+            className="relative p-6 rounded-3xl bg-gradient-to-br from-indigo-600 to-pink-500 text-white shadow-2xl"
           >
-            <h4 className="text-xl font-bold mb-3">What you’ll build</h4>
+            <h4 className="text-xl font-bold mb-3 flex items-center gap-2">
+              <FaMoneyBillWave /> Course Fee
+            </h4>
+            <p className="text-3xl font-extrabold mb-1">₹14,999</p>
+            <p className="text-sm opacity-90 mb-4">
+              Limited-time offer! EMI available at ₹999/month.
+            </p>
             <ul className="space-y-2 text-sm opacity-90">
               <li className="flex items-center gap-2">
-                <FaReact /> Modern React Apps & Dashboards
+                <FaClock /> Duration: 4 Months (Weekend & Weekday batches)
               </li>
               <li className="flex items-center gap-2">
-                <FaNodeJs /> APIs & Authentication Systems
+                <FaAward /> Certificate of Completion
               </li>
               <li className="flex items-center gap-2">
-                <FaDatabase /> Data Models with MongoDB
+                <FaUserTie /> 100% Placement Guidance
               </li>
             </ul>
           </motion.div>
         </div>
       </section>
 
+      {/* Why Choose Section */}
       <section className="max-w-7xl mx-auto px-6 md:px-12 py-16 space-y-8">
         <motion.h2
           variants={fadeInUp}
@@ -276,18 +280,94 @@ const MERNStackCourse = () => {
           <Feature
             icon={<FaTools className="w-6 h-6" />}
             title="Hands-on Learning"
-            text="Build real projects with mentor guidance and peer review."
+            text="Build 5+ real-world projects with mentor feedback and guidance."
           />
           <Feature
             icon={<FaServer className="w-6 h-6" />}
-            title="Production Skills"
-            text="CI/CD, logging, performance tuning, and deployment know-how."
+            title="Industry Curriculum"
+            text="Learn APIs, security, and deployment exactly as done in companies."
           />
           <Feature
             icon={<FaProjectDiagram className="w-6 h-6" />}
-            title="Capstone Projects"
+            title="Portfolio Projects"
             text="E-commerce, Chat App, Dashboard — build your job-ready portfolio."
           />
+        </div>
+      </section>
+
+      {/* Syllabus Section */}
+      <section className="max-w-5xl mx-auto px-6 md:px-12 py-16 space-y-6">
+        <motion.h2
+          variants={fadeInUp}
+          initial="hidden"
+          whileInView="visible"
+          className="text-3xl font-extrabold text-center text-gray-900 dark:text-white"
+        >
+          Detailed Syllabus
+        </motion.h2>
+
+        <div className="space-y-4">
+          {[
+            {
+              title: "Module 1: HTML, CSS & JavaScript Foundation",
+              content: (
+                <ul className="list-disc pl-6 space-y-1">
+                  <li>HTML5 semantic elements & responsive design</li>
+                  <li>Modern CSS (Flexbox, Grid, Animations)</li>
+                  <li>JavaScript ES6+, DOM, and event handling</li>
+                </ul>
+              ),
+            },
+            {
+              title: "Module 2: React.js Mastery",
+              content: (
+                <ul className="list-disc pl-6 space-y-1">
+                  <li>Functional Components, Hooks, Props & State</li>
+                  <li>Routing, Context API, and Redux Toolkit</li>
+                  <li>Building full-featured React projects</li>
+                </ul>
+              ),
+            },
+            {
+              title: "Module 3: Node.js & Express Backend",
+              content: (
+                <ul className="list-disc pl-6 space-y-1">
+                  <li>REST APIs with Express.js</li>
+                  <li>JWT Authentication & Middleware</li>
+                  <li>Error handling & performance optimization</li>
+                </ul>
+              ),
+            },
+            {
+              title: "Module 4: MongoDB & Database Design",
+              content: (
+                <ul className="list-disc pl-6 space-y-1">
+                  <li>Data modeling and schema design</li>
+                  <li>CRUD operations with Mongoose</li>
+                  <li>Database optimization and aggregation</li>
+                </ul>
+              ),
+            },
+            {
+              title: "Module 5: Deployment & Final Project",
+              content: (
+                <ul className="list-disc pl-6 space-y-1">
+                  <li>Deploy apps on Render / Vercel</li>
+                  <li>Capstone Project: Full MERN Application</li>
+                  <li>GitHub & Resume Portfolio Setup</li>
+                </ul>
+              ),
+            },
+          ].map((item, i) => (
+            <AccordionItem
+              key={i}
+              title={item.title}
+              open={openSection === i}
+              onToggle={() => setOpenSection(openSection === i ? null : i)}
+            >
+              {item.content}
+            </AccordionItem>
+          ))}
         </div>
       </section>
 

@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css'; // Tailwind CSS import
+import './index.css'; 
 import { RouterProvider } from 'react-router-dom';
 import { router } from './routes.jsx';
-import { ThemeProvider } from './components/Navbar'; // keep your ThemeProvider
+import { ThemeProvider } from './components/Navbar'; 
 import { ToastProvider } from './components/Toast';
 import { AuthProvider } from './components/auth.jsx';
 
